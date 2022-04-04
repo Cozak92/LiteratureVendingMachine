@@ -26,6 +26,11 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation ("com.querydsl:querydsl-jpa:5.0.0")
+	annotationProcessor ("com.querydsl:querydsl-apt:${dependencyManagement.importedProperties["querydsl.version"]}:jpa")
+	annotationProcessor ("jakarta.persistence:jakarta.persistence-api")
+	annotationProcessor ("jakarta.annotation:jakarta.annotation-api")
 }
 
 tasks.withType<KotlinCompile> {
