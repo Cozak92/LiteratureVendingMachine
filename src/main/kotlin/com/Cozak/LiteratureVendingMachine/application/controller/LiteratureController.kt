@@ -1,19 +1,19 @@
 package com.Cozak.LiteratureVendingMachine.application.controller
 
 import com.Cozak.LiteratureVendingMachine.application.command.GetLiteratureCommand
-import com.Cozak.LiteratureVendingMachine.application.dto.GetLiteratureDto
 import com.Cozak.LiteratureVendingMachine.domain.usecase.ILiteratureUseCase
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.Cozak.LiteratureVendingMachine.infrastructure.entity.Literature
+import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/literature")
+@RequestMapping("/v1/literature")
 class LiteratureController(val literatureUseCase: ILiteratureUseCase) {
 
     @GetMapping
-    fun getLiterature(getLiteratureDto: GetLiteratureDto){
-        val command = GetLiteratureCommand(getLiteratureDto.mood, getLiteratureDto.textLength )
-        literatureUseCase.getLiterature(command)
+    fun getLiterature(@RequestParam("mood") mood: String,
+                      @RequestParam("text_length") textLength: Int
+    ): Literature {
+        val command = GetLiteratureCommand(mood, textLength)
+        return literatureUseCase.getLiteratures(command)
     }
 }
