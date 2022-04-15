@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("org.springframework.boot") version "2.6.5"
@@ -28,12 +27,14 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation ("com.querydsl:querydsl-jpa:5.0.0")
+	implementation("org.postgresql:postgresql")
+	platform("com.google.cloud:spring-cloud-gcp-dependencies:3.3.0-SNAPSHOT")
 	annotationProcessor ("com.querydsl:querydsl-apt:${dependencyManagement.importedProperties["querydsl.version"]}:jpa")
 	annotationProcessor ("jakarta.persistence:jakarta.persistence-api")
 	annotationProcessor ("jakarta.annotation:jakarta.annotation-api")
 }
 
-tasks.withType<KotlinCompile> {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "17"
