@@ -1,6 +1,7 @@
 package com.Cozak.LiteratureVendingMachine.application.controller
 
 import com.Cozak.LiteratureVendingMachine.domain.entity.Author
+import com.Cozak.LiteratureVendingMachine.domain.port.InPort.AuthorInPort
 import com.Cozak.LiteratureVendingMachine.domain.service.AuthorService
 import com.Cozak.LiteratureVendingMachine.domain.usecase.IAuthorUseCase
 import com.Cozak.LiteratureVendingMachine.domain.vo.FullName
@@ -23,7 +24,7 @@ class AuthorControllerTest: BehaviorSpec() {
     override fun extensions() = listOf(SpringExtension)
 
     @Autowired
-    lateinit var authorInPort: AuthorControllerImpl
+    lateinit var authorInPort: AuthorInPort
 
     @MockkBean
     lateinit var authorUseCase: IAuthorUseCase
