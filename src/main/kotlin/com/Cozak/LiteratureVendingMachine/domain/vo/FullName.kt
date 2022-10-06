@@ -1,4 +1,4 @@
-package com.Cozak.LiteratureVendingMachine.infrastructure.vo
+package com.Cozak.LiteratureVendingMachine.domain.vo
 
 import javax.persistence.Embeddable
 

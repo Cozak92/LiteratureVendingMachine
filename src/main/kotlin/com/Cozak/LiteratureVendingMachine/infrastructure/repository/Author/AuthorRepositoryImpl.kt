@@ -1,7 +1,7 @@
 package com.Cozak.LiteratureVendingMachine.infrastructure.repository.Author
 
 import com.Cozak.LiteratureVendingMachine.domain.entity.Author
-import com.Cozak.LiteratureVendingMachine.infrastructure.entity.QAuthor.author
+import com.Cozak.LiteratureVendingMachine.domain.entity.QAuthor.author
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository
 

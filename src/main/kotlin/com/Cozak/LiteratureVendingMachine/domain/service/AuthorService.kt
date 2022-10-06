@@ -1,15 +1,15 @@
 package com.Cozak.LiteratureVendingMachine.domain.service
 
-import com.Cozak.LiteratureVendingMachine.infrastructure.repository.Author.IAuthorRepository
+import com.Cozak.LiteratureVendingMachine.domain.port.outPort.AuthorPersistencePort
 import org.springframework.stereotype.Service
 
 
 @Service
-class AuthorService(val authorRepository: IAuthorRepository) {
+class AuthorService(val authorPersistencePort: AuthorPersistencePort) {
 
     fun authorExists(authorId: Int): Boolean =
-        authorRepository
-            .findAuthor(authorId)
+        authorPersistencePort
+            .getAuthorById(authorId)
             ?.let {
                 true
             } ?: false

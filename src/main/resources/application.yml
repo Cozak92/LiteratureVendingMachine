@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://34.64.236.216:5432/postgres?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: postgres
+    password: tofhdnstlwkr1!
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    platform: postgresql
+  jpa:
+    generate-ddl: 'true'
+    show-sql: 'true'
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        format_sql: 'true'
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+server:
+  servlet:
+    context-path: /api
+  port: 3000
+  shutdown: graceful
+
+

@@ -1,18 +1,17 @@
 package com.Cozak.LiteratureVendingMachine.domain.usecase
 
 import com.Cozak.LiteratureVendingMachine.application.command.GetLiteratureCommand
-import com.Cozak.LiteratureVendingMachine.infrastructure.entity.Literature
-import com.Cozak.LiteratureVendingMachine.infrastructure.repository.CustomizedLiteratureRepository
-import com.Cozak.LiteratureVendingMachine.infrastructure.repository.ILiteratureRepository
+import com.Cozak.LiteratureVendingMachine.domain.entity.Literature
+import com.Cozak.LiteratureVendingMachine.infrastructure.repository.Literature.ILiteratureRepository
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 
 @Service
-class GetLiteratureUseCaseImpl(val customizedLiteratureRepository: CustomizedLiteratureRepository) :
+class GetLiteratureUseCaseImpl(val iLiteratureRepository: ILiteratureRepository) :
     ILiteratureUseCase {
 
     @Transactional
     override fun getLiteratures(command: GetLiteratureCommand): Literature =
-        customizedLiteratureRepository.findLiterature(command.mood, command.textLength).random()
+        iLiteratureRepository.findLiterature(command.textLength).random()
 
 }

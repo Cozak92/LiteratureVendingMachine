@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 plugins {
     id("org.springframework.boot") version "2.6.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id ("org.jetbrains.kotlin.plugin.allopen") version "1.6.20"
+    id ("org.jetbrains.kotlin.plugin.noarg") version "1.6.20"
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
     kotlin("plugin.jpa") version "1.6.10"
@@ -41,12 +43,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.0")
     runtimeOnly("com.h2database:h2")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
     // QueryDSL
@@ -61,6 +64,14 @@ dependencies {
     platform("com.google.cloud:spring-cloud-gcp-dependencies:3.3.0-SNAPSHOT")
     implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("com.google.devtools.ksp:symbol-processing-api:1.6.20-1.0.5")
+    // Test
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.mockk:mockk:1.12.3")
+    testImplementation("io.kotest:kotest-runner-junit5:5.2.2")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.2.2")
+    testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
+    testImplementation("com.ninja-squad:springmockk:3.1.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -73,6 +84,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 val querydslDir = "$buildDir/generated/querydsl"
 
 
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach  {
     useJUnitPlatform()
 }
